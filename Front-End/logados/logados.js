@@ -1,7 +1,7 @@
 console.log('Script Funcionando !')
 
 document.addEventListener('DOMContentLoaded', function() {
-    // VERIFICAÇÃO FORTE DO LOGIN
+
     const usuario = JSON.parse(localStorage.getItem('usuarioNexBank'));
     console.log(usuario)
     console.log(usuario.id)
@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const elementoNome = document.getElementById('nomeUsuario');
     if (elementoNome) elementoNome.textContent = usuario.nome;
 
-    // 2ª Parte: Código do carrossel (única instância de DOMContentLoaded)
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const indicadores = document.querySelectorAll('.indicador');
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startInterval();
     }
     
-    // Event Listeners
+
     nextBtn.addEventListener('click', nextSlide);
     prevBtn.addEventListener('click', prevSlide);
     
@@ -75,12 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', (e) => e.stopPropagation());
     });
 
-    // Controle de intervalo
     startInterval();
     carrossel.addEventListener('mouseenter', () => clearInterval(intervalId));
     carrossel.addEventListener('mouseleave', startInterval);
 
-    // Touch events
     let touchStartX = 0;
     carrossel.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
@@ -95,9 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
         startInterval();
     }, {passive: true});
 
-    // Botão de extrato
     viewStatementBtn.addEventListener('click', function() {
-        alert('Extrato bancário será exibido aqui. Em uma implementação real, isso carregaria os dados do servidor.');
+        alert('Extrato bancário será exibido na página do depósito. Estamos te redirecionando...');
+        window.location.href = '../Deposito/deposito.html';
+
     });
 });
 

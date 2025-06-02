@@ -118,6 +118,9 @@ body {
 }
 
 .extrato {
+    border: 2px solid var(--cinza-escuro);
+    box-shadow: var(--sombra);
+    border-radius: 30px;
     grid-column: span 2;
 }
 
@@ -127,7 +130,13 @@ body {
 }
 
 .extrato-item {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
     padding: 1rem 0;
+    border: 0.5px solid var(--cinza-claro);
+    border-radius: 15px;
+    box-shadow: var(--sombra);
     border-bottom: 1px solid var(--cinza-claro);
 }
 

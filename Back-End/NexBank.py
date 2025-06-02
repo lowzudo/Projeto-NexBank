@@ -1,28 +1,22 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import psycopg2
-from psycopg2 import sql
-import os
-import auth_service as auth_services
-from decimal import Decimal
 import sys
-import traceback
+
+from database import get_db_connection
+import auth_service as auth_services
+
+from operacoes_bancarias.transferencia_service import transferencia_bp
+from operacoes_bancarias.deposito_service import deposito_bp
+from operacoes_bancarias.saque_service import saque_bp
+from operacoes_bancarias.extrato_service import extrato_bp
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-def get_db_connection():
-    try:
-        conn = psycopg2.connect(
-            host="localhost",
-            database="NexBank",
-            user="postgres",
-            password="Vitinho07"
-        )
-        return conn
-    except Exception as e:
-        print(f"⚠️ Erro ao conectar ao banco: {e}", file=sys.stderr)
-        raise
+app.register_blueprint(extrato_bp)
+app.register_blueprint(transferencia_bp)
+app.register_blueprint(deposito_bp)
+app.register_blueprint(saque_bp)
 
 
 @app.route('/api/login', methods=['POST'])
@@ -56,7 +50,6 @@ def cadastro():
                 'mensagem': f'Dados incompletos. Faltando: {", ".join(missing)}'
             }), 400
         
-        # Validação básica de email
         if '@' not in dados['email']:
             return jsonify({'sucesso': False, 'mensagem': 'Email inválido'}), 400
             
@@ -106,234 +99,5 @@ def obter_conta(usuario_id):
         cur.close()
         conn.close()
 
-
-@app.route('/api/deposito', methods=['POST'])
-def deposito():
-    dados = request.get_json()
-    
-    if not all(k in dados for k in ['conta_id', 'valor']):
-        return jsonify({'sucesso': False, 'mensagem': 'Dados incompletos'}), 400
-    
-    try:
-        valor = Decimal(str(dados['valor']))
-        if valor <= 0:
-            return jsonify({'sucesso': False, 'mensagem': 'Valor inválido'}), 400
-            
-        conn = get_db_connection()
-        cur = conn.cursor()
-        
-        cur.execute(
-            "UPDATE contas SET saldo = saldo + %s WHERE id = %s RETURNING saldo",
-            (valor, dados['conta_id'])
-        )
-        
-        novo_saldo = cur.fetchone()[0]
-        
-        cur.execute(
-            """INSERT INTO transacoes 
-                (conta_origem_id, valor, tipo, descricao)
-                VALUES (%s, %s, 'deposito', 'Depósito em conta')""",
-            (dados['conta_id'], valor)
-        )
-        
-        conn.commit()
-        return jsonify({
-            'sucesso': True,
-            'mensagem': 'Depósito realizado com sucesso',
-            'novo_saldo': float(novo_saldo)
-        })
-        
-    except Exception as e:
-        conn.rollback()
-        print(f"Erro no depósito: {e}")
-        return jsonify({'sucesso': False, 'mensagem': 'Erro no servidor'}), 500
-    finally:
-        cur.close()
-        conn.close()
-
-@app.route('/api/saque', methods=['POST'])
-def saque():
-    dados = request.get_json()
-    
-    if not all(k in dados for k in ['conta_id', 'valor']):
-        return jsonify({'sucesso': False, 'mensagem': 'Dados incompletos'}), 400
-    
-    try:
-        valor = Decimal(str(dados['valor']))
-        if valor <= 0:
-            return jsonify({'sucesso': False, 'mensagem': 'Valor inválido'}), 400
-            
-        conn = get_db_connection()
-        cur = conn.cursor()
-        
-
-        cur.execute("SELECT saldo FROM contas WHERE id = %s FOR UPDATE", (dados['conta_id'],))
-        saldo_atual = cur.fetchone()[0]
-        
-        if saldo_atual < valor:
-            return jsonify({'sucesso': False, 'mensagem': 'Saldo insuficiente'}), 400
-            
-
-        cur.execute(
-            "UPDATE contas SET saldo = saldo - %s WHERE id = %s RETURNING saldo",
-            (valor, dados['conta_id'])
-        )
-        
-        novo_saldo = cur.fetchone()[0]
-        
-
-        cur.execute(
-            """INSERT INTO transacoes 
-                (conta_origem_id, valor, tipo, descricao)
-                VALUES (%s, %s, 'saque', 'Saque em conta')""",
-            (dados['conta_id'], valor)
-        )
-        
-        conn.commit()
-        return jsonify({
-            'sucesso': True,
-            'mensagem': 'Saque realizado com sucesso',
-            'novo_saldo': float(novo_saldo)
-        })
-        
-    except Exception as e:
-        conn.rollback()
-        print(f"Erro no saque: {e}")
-        return jsonify({'sucesso': False, 'mensagem': 'Erro no servidor'}), 500
-    finally:
-        cur.close()
-        conn.close()
-
-from decimal import Decimal
-import traceback
-from flask import request, jsonify
-
-@app.route('/api/transferencia', methods=['POST'])
-def transferencia():
-    dados = request.get_json()
-
-    if not all(k in dados for k in ['conta_origem_id', 'conta_destino_numero', 'valor']):
-        return jsonify({'sucesso': False, 'mensagem': 'Dados incompletos'}), 400
-
-    try:
-        conn = get_db_connection()
-        cur = conn.cursor()
-
-        # Busca o id da conta destino pelo número da conta
-        cur.execute("SELECT id FROM contas WHERE numero_conta = %s", (dados['conta_destino_numero'],))
-        conta_destino = cur.fetchone()
-
-        if not conta_destino:
-            return jsonify({'sucesso': False, 'mensagem': 'Conta destino não encontrada'}), 404
-
-        conta_destino_id = conta_destino[0]
-
-        valor = Decimal(str(dados['valor']))
-        if valor <= 0:
-            return jsonify({'sucesso': False, 'mensagem': 'Valor inválido'}), 400
-
-        # Busca saldo da conta origem com lock para evitar race condition
-        cur.execute("SELECT saldo FROM contas WHERE id = %s FOR UPDATE", (dados['conta_origem_id'],))
-        saldo_atual = cur.fetchone()
-        if not saldo_atual:
-            return jsonify({'sucesso': False, 'mensagem': 'Conta origem não encontrada'}), 404
-
-        saldo_atual = saldo_atual[0]
-        if saldo_atual < valor:
-            return jsonify({'sucesso': False, 'mensagem': 'Saldo insuficiente'}), 400
-
-        # Debita da conta origem
-        cur.execute(
-            "UPDATE contas SET saldo = saldo - %s WHERE id = %s RETURNING saldo",
-            (valor, dados['conta_origem_id'])
-        )
-        novo_saldo_origem = cur.fetchone()[0]
-
-        # Credita na conta destino
-        cur.execute(
-            "UPDATE contas SET saldo = saldo + %s WHERE id = %s",
-            (valor, conta_destino_id)
-        )
-
-        # Insere transação
-        cur.execute(
-            """INSERT INTO transacoes 
-                (conta_origem_id, conta_destino_id, valor, tipo, descricao)
-                VALUES (%s, %s, %s, 'transferencia', 'Transferência entre contas')""",
-            (dados['conta_origem_id'], conta_destino_id, valor)
-        )
-
-        conn.commit()
-
-        return jsonify({
-            'sucesso': True,
-            'mensagem': 'Transferência realizada com sucesso',
-            'novo_saldo': float(novo_saldo_origem)
-        })
-
-    except Exception as e:
-        conn.rollback()
-        print(f"Erro na transferência: {e}")
-        traceback.print_exc()
-        return jsonify({'sucesso': False, 'mensagem': 'Erro no servidor'}), 500
-
-    finally:
-        cur.close()
-        conn.close()
-
-
-
-@app.route('/api/extrato/<int:conta_id>', methods=['GET'])
-def extrato(conta_id):
-    try:
-        conn = get_db_connection()
-        cur = conn.cursor()
-        
-        cur.execute("""
-            SELECT t.id, t.tipo, t.valor, t.data_transacao,
-                    co.numero_conta as conta_origem,
-                    cd.numero_conta as conta_destino,
-                    t.descricao
-            FROM transacoes t
-            LEFT JOIN contas co ON t.conta_origem_id = co.id
-            LEFT JOIN contas cd ON t.conta_destino_id = cd.id
-            WHERE t.conta_origem_id = %s OR t.conta_destino_id = %s
-            ORDER BY t.data_transacao DESC
-            LIMIT 20
-        """, (conta_id, conta_id))
-        
-        transacoes = []
-        for t in cur.fetchall():
-            transacoes.append({
-                'id': t[0],
-                'tipo': t[1],
-                'valor': float(t[2]),
-                'data': t[3].isoformat(),
-                'conta_origem': t[4],
-                'conta_destino': t[5],
-                'descricao': t[6]
-            })
-        
-        return jsonify({
-            'sucesso': True,
-            'transacoes': transacoes
-        })
-        
-    except Exception as e:
-        print(f"Erro ao obter extrato: {e}")
-        return jsonify({'sucesso': False, 'mensagem': 'Erro no servidor'}), 500
-    finally:
-        cur.close()
-        conn.close()
-
-if __name__ == "__main__":
-    try:
-        # Verificação de conexão com o banco ao iniciar
-        conn = get_db_connection()
-        conn.close()
-        print("✅ Banco de dados conectado com sucesso!")
-    except Exception as e:
-        print(f"❌ Falha crítica ao conectar ao banco: {e}", file=sys.stderr)
-        sys.exit(1)
-    
+if __name__ == '__main__':
     app.run(port=5000, debug=True)

@@ -1,17 +1,7 @@
 import psycopg2
 from psycopg2 import sql, errors
 import random
-
-def get_db_connection():
-    """Estabelece conexão com o banco de dados"""
-    conn = psycopg2.connect(
-        host="localhost",
-        database="NexBank",
-        user="postgres",
-        password="Vitinho07"
-    )
-    return conn
-
+from database import get_db_connection
 
 def criar_tabelas():
     """Cria as tabelas necessárias se não existirem"""
