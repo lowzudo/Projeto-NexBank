@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operações Bancárias | NexBank</title>
+    <link rel="stylesheet" href="deposito.css">
+    <link rel="icon" href="../imgs/banco_header-removebg-preview.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <img src="../imgs/banco_logo-removebg-preview.png" alt="NexBank" class="logo" onclick="window.location.href='../index.html'">
+            <div class="user-info">
+                <span id="nomeUsuario">Carregando...</span>
+                <button id="btnLogout" aria-label="Sair da conta">Sair</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="dashboard">
+        <!-- Seção Minha Conta -->
+        <div class="card">
+            <h2>Minha Conta</h2>
+            <div class="conta-info">
+                <p>Conta: <span id="numeroConta" aria-live="polite">---</span></p>
+                <p>Saldo:</p>
+                <div class="saldo" id="saldoConta" aria-live="polite">R$ 0,00</div>
+            </div>
+        </div>
+        
+        <!-- Operações Bancárias -->
+        <div class="card">
+            <h2>Depósito</h2>
+            <form id="formDeposito" class="operacao-form">
+                <input type="number" step="0.01" id="valorDeposito" placeholder="Valor (ex: 100.50)" required min="0.01">
+                <button type="submit" class="btn-operacao">Depositar</button>
+            </form>
+        </div>
+        
+        <div class="card">
+            <h2>Saque</h2>
+            <form id="formSaque" class="operacao-form">
+                <input type="number" step="0.01" id="valorSaque" placeholder="Valor (ex: 50.00)" required min="0.01">
+                <button type="submit" class="btn-operacao">Sacar</button>
+            </form>
+        </div>
+        
+        <div class="card">
+            <h2>Transferência</h2>
+            <form id="formTransferencia" class="operacao-form">
+                <input type="text" id="contaDestino" placeholder="Número da conta destino (ex: 33211-6)">
+                <input type="number" step="0.01" id="valorTransferencia" placeholder="Valor" required min="0.01">
+                <button type="submit" class="btn-operacao">Transferir</button>
+            </form>
+        </div>
+        
+        <div class="card extrato">
+            <h2>Extrato</h2>
+            <div id="listaExtrato" class="extrato-container" aria-live="polite">
+                <p class="sem-transacoes">Nenhuma transação encontrada</p>
+            </div>
+        </div>
+    </main>
+    
+    <script src="deposito.js" defer></script>
+    <script src="saque.js"></script>
+    <script src="transferencia.js"></script>
+</body>
+</html>

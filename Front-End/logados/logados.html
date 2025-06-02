@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexBank - Seu Banco Digital</title>
+    <link rel="stylesheet" href="logados.css">
+    <link rel="icon" href="../imgs/banco_header-removebg-preview.png" type="image/png">
+</head>
+<body>
+    
+    <header>
+        <div class="container header-container">
+            <div class="logo">Nex<span>Bank</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/Front-End/main/index.html">Home</a></li>
+                    <li><a href="/Front-End/Deposito/deposito.html">Depósitos | Transferências</a></li>
+                    <li><a href="/Front-End/Pix/pix.html">Pix</a></li>
+                    <li><button id="btnLogout" aria-label="Sair da conta">Sair</button>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="dashboard">
+            <div class="welcome-message">
+                <h2>Bem-vindo ao NexBank, Usuário!</h2>
+                <p>Seu banco digital completo e seguro</p>
+            </div>
+
+            
+            <div class="carrossel-container">
+                <div class="carrossel">
+                    
+                    <div class="slide">
+                        <img src="/Front-End/imgs/NexBank.png" alt="NexBank">
+                    </div>
+                    
+                    
+                    <div class="slide">
+                        <img src="/Front-End/imgs/holofotes_cartaoverde.png" alt="Cartão Verde">
+                        <a href="/Front-End/cartões/cartoes.html" class="saiba-mais-btn">Saiba Mais</a>
+                    </div>
+                    
+                    
+                    <div class="slide">
+                        <img src="/Front-End/imgs/Homem_cartaopreto.png" alt="Cartão Preto">
+                        <a href="/Front-End/cartões/cartoes.html" class="saiba-mais-btn">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <button class="btn" id="prevBtn">&#10094;</button>
+                <button class="btn" id="nextBtn">&#10095;</button>
+
+                <div class="indicadores">
+                    <div class="indicador ativo"></div>
+                    <div class="indicador"></div>
+                    <div class="indicador"></div>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Depósitos</h3>
+                    <p>Realize depósitos em sua conta de forma rápida e segura. Aceitamos depósitos via TED, DOC, boleto bancário e em nossas agências credenciadas. Seu dinheiro disponível em até 1 dia útil.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Transferências</h3>
+                    <p>Transfira valores para qualquer banco com taxas reduzidas. Realize transferências via TED e DOC gratuitas para contas NexBank ou com baixas taxas para outros bancos.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>PIX</h3>
+                    <p>Utilize o PIX para enviar e receber pagamentos instantâneos 24/7. Cadastre suas chaves PIX (CPF, e-mail, celular ou chave aleatória) e aproveite transferências em segundos.</p>
+                </div>
+            </div>
+
+            
+            <div class="account-info">
+                <div class="feature-card">
+                    <h3>Extrato Bancário</h3>
+                    <p>Acompanhe todas as movimentações da sua conta em tempo real. Filtre por período, tipo de transação ou valor para melhor organização financeira.</p>
+                    <button class="saiba-mais-btn" style="position: static; transform: none; margin-top: 15px; display: inline-block;" id="viewStatement">Ver Extrato</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 NexBank - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="logados.js"></script>
+</body>
+</html>

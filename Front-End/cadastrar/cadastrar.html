@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | NexBank</title>
+    <link rel="icon" href="../imgs/banco_header-removebg-preview.png" type="image/png">
+    <link rel="stylesheet" href="cadastrar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="../main/index.html">
+                <img src="../imgs/banco_logo-removebg-preview.png" alt="NexBank" class="logo-img">
+            </a>
+        </div>
+        
+        <div class="login-card">
+            <h1 class="title">Crie sua conta no <span class="brand">NexBank</span></h1>
+            <p class="subtitle">Sua jornada financeira começa aqui</p>
+            
+            <form class="form" id="formCadastro">
+                <div class="input-group">
+                    <input type="text" id="nome" placeholder=" " required>
+                    <label for="nome">Nome Completo</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="email" id="email" placeholder=" " required>
+                    <label for="email">E-mail</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="CPF" placeholder=" " required>
+                    <label for="CPF">CPF</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="senha" placeholder=" " required>
+                    <label for="senha">Senha</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="confirmar-senha" placeholder=" " required>
+                    <label for="confirmar-senha">Confirmar Senha</label>
+                </div>
+                
+                <button type="submit" class="submit-btn">Criar conta</button>
+            </form>
+        </div>
+    </div>
+    <script src="cadastrar.js" type="module"></script>
+</body>
+</html>

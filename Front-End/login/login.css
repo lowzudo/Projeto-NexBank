@@ -1,0 +1,257 @@
+:root {
+    --verde-nexbank: rgb(14, 160, 41);
+    --verde-escuro: #0b8a2d;
+    --verde-claro: #e8f5e9;
+    --cinza-escuro: #2d3748;
+    --cinza-medio: #718096;
+    --cinza-claro: #edf2f7;
+    --branco: #ffffff;
+    --borda-arredondada: 12px;
+    --sombra: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    background-color: #f7fafc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(14, 160, 41, 0.05) 0%, rgba(14, 160, 41, 0) 90%);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+    transition: var(--transicao);
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.login-card {
+    background: var(--branco);
+    width: 100%;
+    max-width: 450px;
+    padding: 2.5rem;
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: var(--transicao);
+}
+
+.login-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.8rem;
+    color: var(--cinza-escuro);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.brand {
+    color: var(--verde-nexbank);
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--cinza-medio);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 1px solid var(--cinza-claro);
+    border-radius: var(--borda-arredondada);
+    font-size: 1rem;
+    transition: var(--transicao);
+    background-color: var(--cinza-claro);
+    height: 56px;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--verde-nexbank);
+    background-color: var(--branco);
+    box-shadow: 0 0 0 3px rgba(14, 160, 41, 0.1);
+}
+
+.input-group label {
+    position: absolute;
+    left: 3rem;
+    top: 1rem;
+    color: var(--cinza-medio);
+    background-color: var(--cinza-claro);
+    padding: 0 0.5rem;
+    transition: var(--transicao);
+    pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -0.6rem;
+    left: 2rem;
+    font-size: 0.8rem;
+    color: var(--verde-nexbank);
+    background-color: var(--branco);
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cinza-medio);
+    transition: var(--transicao);
+}
+
+.input-group input:focus ~ .input-icon {
+    color: var(--verde-nexbank);
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -0.5rem;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--cinza-medio);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.remember input {
+    accent-color: var(--verde-nexbank);
+}
+
+.forgot-password {
+    color: var(--cinza-medio);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--transicao);
+}
+
+.forgot-password:hover {
+    color: var(--verde-nexbank);
+    text-decoration: underline;
+}
+
+.submit-btn {
+    background: linear-gradient(to right, var(--verde-nexbank), var(--verde-escuro));
+    color: var(--branco);
+    border: none;
+    padding: 1rem;
+    border-radius: var(--borda-arredondada);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 6px rgba(14, 160, 41, 0.2);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(14, 160, 41, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.register-link {
+    text-align: center;
+    color: var(--cinza-medio);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.register-link a {
+    color: var(--verde-nexbank);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transicao);
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .login-card {
+        padding: 1.5rem;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .logo-img {
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .forgot-password {
+        margin-top: 0.5rem;
+    }
+}

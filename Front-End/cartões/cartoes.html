@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexBank - Cartões</title>
+    <link rel="stylesheet" href="cartoes.css">
+    <link rel="icon" href="../imgs/banco_header-removebg-preview.png" type="image/png">
+</head>
+<body>
+    
+    <header>
+        <div class="conteiner cabecalho-conteiner">
+            <div class="logo">Nex<span>Bank</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/Front-End/main/index.html">Home</a></li>
+                    <li><a href="/Front-End/Deposito/deposito.html">Depósitos | Transferências</a></li>
+                    <li><a href="/Front-End/Pix/pix.html">Pix</a></li>
+                    <li><a href="https://www.google.com.br/">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="conteiner">
+        
+        <div class="painel">
+            <div class="mensagem-boas-vindas">
+                <h2>Bem-vindo à área de Cartões!</h2>
+                <p>Ótima escolha ao vir aqui.<br>
+                Importante dizer que trabalhamos apenas com cartões de débito e, por enquanto, digitais.
+                </p>
+            </div>
+        
+
+        <div class="area-cartoes">
+            <div class="cartao">
+                <img src="/Front-End/imgs/Cartão Verde.png" alt="Cartão Verde">
+                <h1><strong class="verde">Green</strong> NexCard</h1>
+                <p>O <strong class="verde">Green</strong> NexCard é ideal para quem busca:</p>
+                <ul>
+                    <li>✔️ Milhas aéreas turbinadas</li>
+                    <li>✔️ Sem anuidade</li>
+                    <li>✔️ Cashback em viagens</li>
+                </ul>
+                <button onclick="gerarCartao('green-cartao')" class="botao" type="button">Gerar</button>
+                <div id="green-cartao"></div>
+            </div>
+
+        <div class="cartao">
+            <img src="/Front-End/imgs/Cartão Azul.png" alt="Cartão Azul">
+            <h1><strong class="azul">Blue</strong> NexCard</h1>
+            <p>O <strong class="azul">Blue</strong> NexCard oferece:</p>
+            <ul>
+                <li>✔️ Limite estendido</li>
+                <li>✔️ Acesso a salas VIP</li>
+                <li>✔️ Proteção de compras</li>
+            </ul>
+            <button onclick="gerarCartao('blue-cartao')" class="botao-2" type="button">Gerar</button>
+            <div id="blue-cartao"></div>
+            </div>
+        </div>
+
+    </div>
+    </main>
+    <script src="cartoes.js"></script>
+</body>
+</html>

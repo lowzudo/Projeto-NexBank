@@ -1,0 +1,219 @@
+:root {
+    --verde-escuro: #006400;
+    --verde-nexbank: rgb(14, 160, 41);
+    --azul-marinho: #000080;
+    --azul-nexbank: #0077ff;
+    --branco: #ffffff;
+    --cinza-claro: #f5f5f5;
+    --cinza-escuro: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top left, #e3f0ff 0%, #dff5e1 40%, #ffffff 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--cinza-escuro);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Elementos decorativos no fundo */
+body::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 119, 255, 0.15) 0%, transparent 70%);
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(14, 160, 41, 0.15) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.conteiner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, var(--verde-escuro), var(--azul-marinho));
+    color: var(--branco);
+    padding: 15px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho-conteiner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: var(--verde-nexbank);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: var(--branco);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--verde-nexbank);
+}
+
+
+.mensagem-boas-vindas {
+    background: linear-gradient(135deg, var(--verde-escuro), var(--azul-marinho));
+    color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.area-cartoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.cartao {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+    width: 320px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cartao:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.cartao img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    border: 2px solid rgba(0, 191, 255, 0.8);
+    transition: border-color 0.3s;
+}
+
+.cartao img:hover {
+    border-color: #FF69B4;
+}
+
+.cartao h1 {
+    margin: 15px 0 10px;
+    font-size: 26px;
+}
+
+.cartao p {
+    font-size: 16px;
+    color: var(--cinza-escuro);
+    margin-bottom: 10px;
+}
+
+.cartao ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cartao ul li {
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+
+.verde {
+    color: var(--verde-nexbank);
+}
+
+.azul {
+    color: var(--azul-nexbank);
+}
+
+@media (max-width: 768px) {
+    .area-cartoes {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.botao{
+    width: 100px;
+    font-size: 20px;
+    height: 35px;
+    background-color: var(--verde-nexbank);
+    color: var(--branco);
+    border-radius: 10px;
+    border: 1px solid var(--azul-nexbank);
+}
+
+.botao:hover{
+    transform: scale(1.1);
+    background-color: var(--azul-nexbank);
+    color: var(--black);
+    transition: 0.5s;
+}
+
+.botao-2{
+    margin-top: 15px;
+    width: 100px;
+    font-size: 20px;
+    height: 35px;
+    background-color: var(--azul-nexbank);
+    color: var(--branco);
+    border-radius: 10px;
+    border: 1px solid var(--verde-nexbank);
+}
+
+.botao-2:hover{
+    transform: scale(1.1);
+    background-color: var(--verde-nexbank);
+    color: var(--black);
+    transition: 0.5s;
+}

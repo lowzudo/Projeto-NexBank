@@ -1,0 +1,150 @@
+
+:root {
+    --primary: rgb(14, 160, 41);
+    --primary-light: rgb(14, 160, 41);
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --gray: #94a3b8;
+    --border-radius: 12px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.logo-img {
+    height: 80px;
+    width: auto;
+}
+
+.logo-img:hover{
+    transform: scale(1.05);
+}
+
+.login-card {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    font-size: 1.8rem;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.brand {
+    color: rgb(14, 160, 41);
+}
+
+.subtitle {
+    color: var(--gray);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-group label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: var(--gray);
+    background-color: white;
+    padding: 0 0.25rem;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -0.5rem;
+    font-size: 0.8rem;
+    color: var(--primary);
+}
+
+
+.submit-btn {
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+
+@media (max-width: 768px) {
+    .login-card {
+        padding: 1.5rem;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+}

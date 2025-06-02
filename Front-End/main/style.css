@@ -1,0 +1,276 @@
+.card-detalhes {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    z-index: 1001;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: none;
+}
+
+.card-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.body-blur::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    pointer-events: none;
+}
+
+/* Garante que o modal e seus conteúdos não disparam eventos de clique */
+.card-detalhes,
+.card-detalhes * {
+    pointer-events: none;
+}
+
+/* Mas permite interação com elementos clicáveis dentro do modal */
+.card-detalhes a,
+.card-detalhes button,
+.card-detalhes input {
+    pointer-events: auto;
+}
+
+/* Garante que o overlay capture todos os cliques */
+.card-overlay {
+    pointer-events: auto;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root{
+    --primary: rgb(26, 179, 54);
+    --segundary: rgb(44, 12, 108);
+    --dark: black;
+    --light: white;
+
+}
+
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+body {
+    background-color: var(--light);
+    box-sizing: border-box;
+    height: 100vh;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 700 ;
+}
+
+a:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+    text-decoration: underline;
+}
+
+.navbar {
+    background: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right,
+            rgba(180, 239, 128, 0.847) 0%,
+            rgba(151, 222, 101, 0.603) 20%,
+            rgba(76, 225, 53, 0.865) 50%,
+            rgba(93, 236, 50, 0.58) 80%,
+            rgba(34, 222, 24, 0.852) 100%
+        ); 
+    box-shadow: inset 0 0 20px rgba(66, 66, 66, 0.2); 
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.navbar_login {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8%;
+    gap: 60px;
+    align-items: center;
+}
+
+.navbar_login_criar {
+    background-color: var(--primary);
+    border-radius: 25px;
+    border: 15px solid var(--primary);
+}
+
+.navbar_login_criar:hover {
+    background-color:var(--segundary);
+    border: 15px solid var(--segundary);
+    color:var(--light);
+}
+
+.corpo_comeco{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--primary);
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.corpo_comeco_img{
+    margin-top: -30px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    box-shadow: 20px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.corpo_comeco_texto,
+.corpo_comeco_img{
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out;
+    animation-delay: 0.5s;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.corpo_comeco_texto{
+    color:var(--segundary);
+    margin-left: 80px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: "Josefin Sans", sans-serif ;
+    font-weight: 400;
+}
+
+.corpo_cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 80px;
+    font-family: "Josefin Sans", sans-serif ;
+    font-weight: 100;
+    font-style: oblique;
+    color: var(--segundary);
+}
+
+.corpo_cards_mercado,
+.corpo_cards_vantagens,
+.corpo_cards_investimento{
+    border-radius: 20px;
+    border: 5px solid var(--primary);
+    height: 100px;
+    width: 400px;
+    border-top: 0ch;
+    box-shadow: 20px 10px 10px rgb(38, 22, 68);
+}
+
+.corpo_cards_mercado_titulo,
+.corpo_cards_investimento_titulo,
+.corpo_cards_vantagens_titulo{
+    font-size: 30px;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.corpo_cards_mercado:active,
+.corpo_cards_vantagens:active,
+.corpo_cards_investimento:active {
+    transform: scale(0.95); 
+}
+
+
+.corpo_cards_mercado_texto,
+.corpo_cards_investimento_texto{
+    font-family: 'Rubik', sans-serif;
+    margin: 3px 40px;
+    font-size: 20px;
+    width: 400px;
+}
+
+.corpo_cards_vantagens_texto{
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.corpo_cards_mercado:hover,
+.corpo_cards_investimento:hover,
+.corpo_cards_vantagens:hover{
+    transition: 0.5s;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+.nexbank{
+    color: var(--primary);
+}
+
+.rodape_textos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    font-size: 8px;
+    gap: 40px;
+    font-family:'Rubik', sans-serif ;
+    font-style: italic;
+}

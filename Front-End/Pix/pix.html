@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIX | NexBank</title>
+    <link rel="stylesheet" href="pix.css">
+    <link rel="icon" href="imgs/banco_header-removebg-preview.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <img src="../imgs/banco_header-removebg-preview.png" alt="NexBank" class="logo" onclick="window.location.href='../main/index.html'">
+            <div class="user-info">
+                <span id="nomeUsuario">Carregando...</span>
+                <button id="btnLogout" aria-label="Sair da conta">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="dashboard">
+        <div class="card account-card">
+            <div class="account-header">
+                <h2><i class="fas fa-wallet"></i> Minha Conta PIX</h2>
+                <button id="btnShowKeys" class="btn-icon" aria-label="Mostrar chaves PIX">
+                    <i class="fas fa-key"></i>
+                </button>
+            </div>
+            <div class="conta-info">
+                <p>Chave PIX: <span id="chavePix">---</span></p>
+                <p>Saldo disponível:</p>
+                <div class="saldo" id="saldoConta" aria-live="polite">R$ 0,00</div>
+            </div>
+            
+            <div id="pixKeysPanel" class="pix-keys-panel hidden">
+                <h3>Minhas Chaves PIX</h3>
+                <ul id="pixKeysList">
+                    <!-- Chaves serão adicionadas dinamicamente -->
+                </ul>
+                <button id="btnAddKey" class="btn-secondary">
+                    <i class="fas fa-plus"></i> Adicionar Chave
+                </button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-paper-plane"></i> Enviar PIX</h2>
+            <form id="formEnviarPix" class="operacao-form">
+                <div class="input-group">
+                    <label for="tipoChave">Tipo de Chave</label>
+                    <select id="tipoChave" required>
+                        <option value="">Selecione...</option>
+                        <option value="cpf">CPF</option>
+                        <option value="email">E-mail</option>
+                        <option value="celular">Celular</option>
+                        <option value="aleatoria">Chave Aleatória</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="chaveDestino">Chave PIX</label>
+                    <input type="text" id="chaveDestino" placeholder="Insira a chave PIX" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="valorPix">Valor (R$)</label>
+                    <input type="number" step="0.01" id="valorPix" placeholder="0,00" required min="0.01">
+                </div>
+                
+                <div class="input-group">
+                    <label for="descricaoPix">Descrição (opcional)</label>
+                    <input type="text" id="descricaoPix" placeholder="Ex: Pagamento serviço">
+                </div>
+                
+                <button type="submit" class="btn-operacao">
+                    <i class="fas fa-paper-plane"></i> Enviar PIX
+                </button>
+            </form>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-qrcode"></i> Receber PIX</h2>
+            <div class="qr-code-container">
+                <div id="qrCodePlaceholder" class="qr-code-placeholder">
+                    <i class="fas fa-qrcode"></i>
+                    <p>Seu QR Code aparecerá aqui</p>
+                </div>
+                <canvas id="qrCodeCanvas" class="hidden"></canvas>
+                
+                <div class="valor-qr-group">
+                    <div class="input-group">
+                        <label for="valorQrCode">Valor (opcional)</label>
+                        <input type="number" step="0.01" id="valorQrCode" placeholder="0,00" min="0.01">
+                    </div>
+                    <button id="btnGenerateQr" class="btn-secondary">
+                        <i class="fas fa-sync-alt"></i> Gerar QR Code
+                    </button>
+                </div>
+                
+                <div class="pix-copy-area">
+                    <p>Sua chave PIX:</p>
+                    <div class="copy-input">
+                        <input type="text" id="chavePixCopy" readonly value="Carregando...">
+                        <button id="btnCopyPix" class="btn-icon" aria-label="Copiar chave PIX">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card extrato">
+            <h2><i class="fas fa-history"></i> Histórico PIX</h2>
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="sent">Enviados</button>
+                <button class="filter-btn" data-filter="received">Recebidos</button>
+            </div>
+            <div id="listaExtrato" class="extrato-container" aria-live="polite">
+                <p class="sem-transacoes">Nenhuma transação PIX encontrada</p>
+            </div>
+        </div>
+    </main>
+    
+    <div id="confirmationModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modalTitle">Confirmar Transação PIX</h3>
+            <div id="modalContent">
+
+            </div>
+            <div class="modal-buttons">
+                <button id="btnConfirmPix" class="btn-operacao">Confirmar</button>
+                <button id="btnCancelPix" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="addKeyModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Adicionar Nova Chave PIX</h3>
+            <form id="formAddKey">
+                <div class="input-group">
+                    <label for="keyType">Tipo de Chave</label>
+                    <select id="keyType" required>
+                        <option value="">Selecione...</option>
+                        <option value="cpf">CPF</option>
+                        <option value="email">E-mail</option>
+                        <option value="celular">Celular</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="keyValue">Valor da Chave</label>
+                    <input type="text" id="keyValue" placeholder="Insira sua chave" required>
+                </div>
+                
+                <button type="submit" class="btn-operacao">
+                    <i class="fas fa-key"></i> Cadastrar Chave
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="pix.js" defer></script>
+</body>
+</html>
