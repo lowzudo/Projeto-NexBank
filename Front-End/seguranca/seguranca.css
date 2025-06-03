@@ -1,0 +1,207 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+:root{
+    --primary: #01c1ca;
+    --verde-nexbank: #0ea029;
+    --white: #ffffff;
+    --black: #000000;
+}
+
+body{
+    background-color: var(--white);
+    color: #003366;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.cabecalho{
+    background-color: var(--primary);
+    background-image: 
+        linear-gradient(
+            to right,
+            rgba(161, 185, 230, 0.847) 0%,
+            rgba(174, 173, 238, 0.603) 20%,
+            rgba(131, 129, 221, 0.865) 50%,
+            rgba(120, 127, 223, 0.58) 80%,
+            rgba(131, 137, 218, 0.852) 100%
+        ); 
+    box-shadow: inset 0 0 20px rgba(66, 66, 66, 0.2); 
+    width: auto;
+    height: 85px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+    font-family: monospace
+}
+
+.cabecalho_titulo{
+    font-size: 35px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.cabecalho_img{
+    height: 120px;
+    width: 150px;
+}
+
+.corpo_inicio{
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 45vh;
+    margin-top: 13vh;
+    gap: 30px;
+}
+
+.corpo_inicio_texto{
+    font-size: 50px;
+    font-weight: 500;
+    color: var(--black);
+    font-family: monospace;
+    opacity: 0;
+    animation: descerAparecendo 3s ease forwards;
+
+}
+
+.corpo_seta {
+    background-color: var(--black);
+    height: 80px;
+    width: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: descerAparecendo 3s ease forwards;
+
+}
+
+.corpo_seta1 {
+    width: 5px;
+    height: 5px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 50px solid var(--black); 
+    margin-top: -30px;
+    opacity: 0;
+    animation: descerAparecendo 3s ease forwards;
+}
+
+@keyframes descerAparecendo {
+    0% {
+    opacity: 0;
+    transform: translateY(-50px);
+    }
+    100% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulsando {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.corpo_inicio_botao {
+    font-family: monospace;
+    font-weight: 600;
+    font-size: 20px;
+    opacity: 0;
+    animation: aparecer 5s ease forwards; 
+    background-color: var(--verde-nexbank);
+    height: 60px;
+    width: 200px;
+    border-radius: 30px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black); 
+    border: none; 
+}
+
+.corpo_inicio_botao:hover {
+    animation: pulsando 2s infinite ease-in-out;
+}
+
+.corpo_inicio_botao:active {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.corpo_segurancas{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 50vh;
+}
+
+.card_titulo{
+    margin-top: 70px;
+    font-size: 35px;
+    width: 500px;
+    font-family: monospace;
+    color: var(--verde-nexbank);
+    font-weight: 900;
+}
+
+.card_texto{
+    opacity: 0;
+    font-size: 20px;
+    width: 400px;
+}
+
+.card{
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 800px;
+    border: 2px solid var(--black);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.card:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    transition: 2s;
+    height: 350px;
+    transform: scale(1.1);
+    .card_titulo{
+        margin-top: -50px ;
+    }
+    .card_texto{
+        animation: aparecer 2s ease forwards;
+    }
+}
