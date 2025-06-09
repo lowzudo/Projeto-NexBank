@@ -21,6 +21,32 @@ def criar_tabelas():
             )
         """)
 
+        #Tabela de Pix
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS pix (
+                id SERIAL PRIMARY KEY,
+                conta_origem_id INTEGER NOT NULL REFERENCES contas(id) ON DELETE CASCADE,
+                chave_destino VARCHAR(255) NOT NULL,
+                valor NUMERIC(12, 2) NOT NULL,
+                descricao VARCHAR(255),
+                data_transacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+
+        #tabela Chaves Pix
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS chaves_pix (
+                id SERIAL PRIMARY KEY,
+                conta_id INTEGER NOT NULL,
+                tipo_chave VARCHAR(20) NOT NULL,
+                chave VARCHAR(255) NOT NULL UNIQUE,
+                FOREIGN KEY (conta_id) REFERENCES contas(id)
+            );
+        """)
+
+
+
+
         # Tabela de contas
         cur.execute("""
             CREATE TABLE IF NOT EXISTS contas (

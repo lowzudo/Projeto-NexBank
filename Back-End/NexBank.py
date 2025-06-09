@@ -9,6 +9,7 @@ from operacoes_bancarias.transferencia_service import transferencia_bp
 from operacoes_bancarias.deposito_service import deposito_bp
 from operacoes_bancarias.saque_service import saque_bp
 from operacoes_bancarias.extrato_service import extrato_bp
+from operacoes_bancarias.pix_service import pix_bp
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -17,6 +18,7 @@ app.register_blueprint(extrato_bp)
 app.register_blueprint(transferencia_bp)
 app.register_blueprint(deposito_bp)
 app.register_blueprint(saque_bp)
+app.register_blueprint(pix_bp)
 
 
 @app.route('/api/login', methods=['POST'])

@@ -1,0 +1,1 @@
+console.log("Pix script loaded");

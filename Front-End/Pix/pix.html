@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIX Transfer | Transações Rápidas</title>
+    <link rel="stylesheet" href="pix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-money-bill-transfer"></i> NEXPIX Transfer</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="ativo">Início</a></li>
+                    <li><a href="#">Transações</a></li>
+                    <li><a href="#">Histórico</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="secao-saldo">
+            <h2>Saldo Disponível</h2>
+            <div class="valor-saldo">R$ <span id="saldo">--</span></div>
+            <div class="acoes-saldo">
+                <button class="botao-primario">Adicionar Fundos</button>
+                <button class="botao-secundario">Extrato</button>
+            </div>
+        </section>
+
+        <section class="secao-transacao">
+            <h2>Nova Transação PIX</h2>
+            <form id="formularioPix">
+                <div class="grupo-formulario">
+                    <label for="tipoPix">Tipo de Chave</label>
+                    <select id="tipoPix" required>
+                        <option value="" disabled selected>Selecione...</option>
+                        <option value="cpf">CPF</option>
+                        <option value="email">E-mail</option>
+                        <option value="telefone">Telefone</option>
+                        <option value="aleatoria">Chave Aleatória</option>
+                    </select>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="chavePix">Chave PIX</label>
+                    <input type="text" id="chavePix" placeholder="Digite a chave PIX" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="valor">Valor (R$)</label>
+                    <input type="number" id="valor" min="0.01" step="0.01" placeholder="0,00" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="descricao">Descrição (opcional)</label>
+                    <input type="text" id="descricao" placeholder="Ex: Pagamento de serviço">
+                </div>
+
+                <button type="submit" class="botao-primario bloco-inteiro">
+                    <i class="fas fa-paper-plane"></i> Enviar PIX
+                </button>
+            </form>
+        </section>
+
+        <section class="transacoes-recentes">
+            <h2>Transações Recentes</h2>
+            <div class="lista-transacoes" id="listaTransacoes">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NEXPIX Transfer. Todos os direitos reservados.</p>
+            <div class="info-seguranca">
+                <i class="fas fa-lock"></i>
+                <span>Transações 100% seguras</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="pix.js"></script>
+</body>
+</html>

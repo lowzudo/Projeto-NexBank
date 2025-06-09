@@ -38,20 +38,17 @@
     pointer-events: none;
 }
 
-/* Garante que o modal e seus conteúdos não disparam eventos de clique */
 .card-detalhes,
 .card-detalhes * {
     pointer-events: none;
 }
 
-/* Mas permite interação com elementos clicáveis dentro do modal */
 .card-detalhes a,
 .card-detalhes button,
 .card-detalhes input {
     pointer-events: auto;
 }
 
-/* Garante que o overlay capture todos os cliques */
 .card-overlay {
     pointer-events: auto;
 }
@@ -64,7 +61,6 @@
     --segundary: rgb(44, 12, 108);
     --dark: black;
     --light: white;
-
 }
 
 * {

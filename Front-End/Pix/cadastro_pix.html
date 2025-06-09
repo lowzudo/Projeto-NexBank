@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro Pix | NexBank</title>
+    <link rel="icon" href="../imgs/banco_header-removebg-preview.png" type="image/png" />
+    <link rel="stylesheet" href="cadastro_pix.css" />
+</head>
+<body>
+    <header class="cabecalho">
+        <img class="cabecalho_img" src="../imgs/logo_pix.png" alt="logo do pix" />
+        <h1 class="cabecalho_titulo">Cadastre sua <strong>Chave Pix</strong></h1>
+        <img class="cabecalho_img" src="../imgs/logo_pix.png" alt="logo do pix" />
+    </header>
+
+    <main class="corpo">
+        <section class="card">
+            <div class="div_card">
+                <img class="logo_card" src="../imgs/banco_header-removebg-preview.png" alt="Logo Nexbank" />
+                <h2 class="card_titulo">Cadastro de Chave Pix</h2>
+
+                <form id="formPix" action="#" method="post">
+                    <label class="label" for="numero_conta">Número da Conta:</label>
+                    <input class="input_1" type="text" id="numero_conta" name="numero_conta" required />
+
+                    <label class="label" for="tipo_chave">Tipo da Chave Pix:</label>
+                    <select class="input_1" id="tipo_chave" name="tipo_chave" required>
+                        <option value="" disabled selected>Selecione o tipo</option>
+                        <option value="cpf">CPF</option>
+                        <option value="email">Email</option>
+                        <option value="telefone">Telefone</option>
+                        <option value="aleatoria">Chave Aleatória</option>
+                    </select>
+
+                    <label class="label" for="chave">Chave Pix:</label>
+                    <input class="input_1" type="text" id="chave" name="chave" required />
+
+                    <button class="button" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </section>
+        <div class="final_pix">
+            <h1 class="final_pix_titulo">Venha fazer transações com o <strong>Nex</strong>Pix imediatamente</h1>
+            <a href="pix.html" class="link_pix">Clique Aqui</a>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script src="cadastro_pix.js" type="text/javascript"></script>
+</body>
+</html>

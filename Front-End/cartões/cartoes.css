@@ -26,7 +26,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Elementos decorativos no fundo */
 body::before {
     content: "";
     position: absolute;
