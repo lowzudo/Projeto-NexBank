@@ -4,7 +4,7 @@ from decimal import Decimal
 
 pix_bp = Blueprint('pix', __name__)
 
-VALID_TIPOS_CHAVE = {'cpf', 'email', 'telefone', 'aleatoria'}  # Exemplo de tipos válidos
+VALID_TIPOS_CHAVE = {'cpf', 'email', 'telefone', 'aleatoria'} 
 
 
 @pix_bp.route('/api/pix', methods=['POST'])
@@ -47,9 +47,6 @@ def pix():
             return jsonify({'sucesso': False, 'mensagem': 'Chave Pix não encontrada'}), 404
 
         conta_destino_id = destino[0]
-
-
-        conn.autocommit = False
 
 
         cur.execute("UPDATE contas SET saldo = saldo - %s WHERE id = %s", (valor, conta_origem_id))

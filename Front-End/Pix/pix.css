@@ -20,7 +20,7 @@ body {
     line-height: 1.6;
 }
 
-.container {
+.cabecalho {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
@@ -98,7 +98,7 @@ h2 {
     justify-content: center;
 }
 
-.botao-primario, .botao-secundario {
+.botao-primario{
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -109,11 +109,6 @@ h2 {
 
 .botao-primario {
     background-color: var(--primaria);
-    color: var(--claro);
-}
-
-.botao-secundario {
-    background-color: var(--secundaria);
     color: var(--claro);
 }
 
@@ -194,7 +189,7 @@ footer {
 }
 
 @media (min-width: 768px) {
-    header .container {
+    header .cabecalho {
         display: flex;
         justify-content: space-between;
         align-items: center;
