@@ -1,2 +1,46 @@
-# Projeto-NexBank
-Repositório do meu primeiro projeto BFF (Back-End to Front-End) para desenvolvimento próprio e usar na faculdade como trabalho de final de semestre.
+# NexBank - API Financeira
+
+![GitHub last commit](https://img.shields.io/github/last-commit/lowzudo/Projeto-NexBank?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/lowzudo/Projeto-NexBank?color=success&style=flat-square)
+![GitHub license](https://img.shields.io/github/license/lowzudo/Projeto-NexBank?style=flat-square)
+
+> **API bancária modular** operações financeiras e histórico de transações. Ideal para integração com apps de fintech.
+
+<div align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWk5dWw2bWl6Z3B1Z2h2eGJ6Y2VjY3JtN3RlZzZzZGJ6eWZ6eGJ5dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/msKNSsKZxdYq4j7T5c/giphy.gif" width="400px" alt="NexBank Demo">
+</div>
+
+---
+
+## Tech Stack
+
+**Back-End:**  
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
+
+**Banco de Dados:**  
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+
+---
+
+## Features
+
+- **Autenticação Segura**  
+  - Login/Cadastro.
+- **Operações Bancárias**  
+  - Transferências, depósitos, saques e consulta de saldo.
+- **Histórico de Transações**  
+  - Filtro por data, tipo de operação ou usuário envolvido.
+- **API Documentada**  
+  - Swagger/OpenAPI para teste de endpoints.
+
+---
+
+## Como Executar
+
+### Pré-requisitos
+- Python 3.10+
+- PostgreSQL 14+
+- Pipenv (ou virtualenv)
+
