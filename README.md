@@ -7,7 +7,7 @@
 > **API bancária modular** operações financeiras e histórico de transações. Ideal para integração com apps de fintech.
 
 <div align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWk5dWw2bWl6Z3B1Z2h2eGJ6Y2VjY3JtN3RlZzZzZGJ6eWZ6eGJ5dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/msKNSsKZxdYq4j7T5c/giphy.gif" width="400px" alt="NexBank Demo">
+  <img src="blob:https://web.whatsapp.com/660a23fd-090a-4a88-8e63-d6ed7d8149ca" width="400px" alt="NexBank Demo">
 </div>
 
 ---
